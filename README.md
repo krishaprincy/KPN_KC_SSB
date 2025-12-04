@@ -53,15 +53,59 @@ Model Waveform
 
 Program
 
+```
+clc;
+clear;
+
+Am = 2.4;
+Ac = 4.8;
+fm = 134;
+fc = 1340;
+fs = 13400;
+
+t = 0:1/fs:2/fm;
+
+// Message signals (cos & sin)
+m1 = Am * cos(2 * 3.14 * fm * t);
+m2 = Am * sin(2 * 3.14 * fm * t);
+
+subplot(4,1,1);
+plot(t, m1);
+title("Message Signal (cos)");
+
+// Carrier signals (cos & sin)
+c1 = Ac * cos(2 * 3.14 * fc * t);
+c2 = Ac * sin(2 * 3.14 * fc * t);
+
+subplot(4,1,2);
+plot(t, c1);
+title("Carrier Signal (cos)");
+
+s1 = c1 .* m1;
+s2 = c2 .* m2;
+
+s_lsb = s1 + s2;
+
+subplot(4,1,3);
+plot(t, s_lsb);
+title("SSB - LSB");
+
+s_usb = s1 - s2;
+
+subplot(4,1,4);
+plot(t, s_usb);
+title("SSB - USB");
+
+```
+
 OUTPUT WAVEFORM
+
+<img width="940" height="566" alt="image" src="https://github.com/user-attachments/assets/74b807cd-ec9a-4ca4-b439-f0e45c3a1554" />
+
 
 TABULATION
 
-
-
-
-
-
+![WhatsApp Image 2025-12-04 at 15 38 33_6a5ffef5](https://github.com/user-attachments/assets/47231946-45ab-4a67-8b78-3bb2d5781dd4)
 
 
 
